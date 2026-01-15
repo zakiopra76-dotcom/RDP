@@ -1,0 +1,13 @@
+# roles/webserver/tasks/main.yml
+---
+- name: Install Apache on RedHat
+  ansible.builtin.yum:
+    name: httpd
+    state: present
+  when: ansible_os_family == 'RedHat' # Platform-specific task
+
+- name: Install Apache on Debian
+  ansible.builtin.apt:
+    name: apache2
+    state: present
+  when: ansible_os_family == 'Debian' # Platform-specific task
